@@ -1,0 +1,117 @@
+.app-container {
+    width: 65%;
+    margin: 0 auto;
+}
+
+.icon-navbar {
+  font-size: 22px;
+}
+
+.text-color-metro {
+  color: rgb(4, 106, 186);
+}
+
+.bg-color-metro {
+  color: rgb(255, 255, 255);
+  background-color: rgb(4, 106, 186);
+}
+
+.btn-primary {
+  background-color: rgb(4, 106, 186) !important;
+}
+
+.btn-light {
+  background-color: rgb(240, 240, 240) !important;
+}
+
+.nav-link.active {
+  background-color: rgb(4, 106, 186) !important;
+}
+
+.status-off {
+  width: 6px; 
+  height: 6px; 
+  border-radius: 12px; 
+  position: relative; 
+  left: 80%; 
+  margin-top: 0px;
+}
+
+.status-on {
+  width: 6px; 
+  height: 6px; 
+  border-radius: 12px; 
+  position: relative; 
+  left: 80%; 
+  margin-top: 0px;
+  background-color: rgb(39, 194, 25);
+}
+
+.ticket-on {
+  width: 20px;
+  height: 20px; 
+  background-color: rgb(39, 194, 25);
+  border-radius: 100%; 
+}
+
+.ticket-off {
+  width: 20px;
+  height: 20px; 
+  background-color: rgb(171, 171, 171);
+  border-radius: 100%; 
+}
+
+.ticket {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+}
+
+.ticket-to-use {
+  cursor: pointer;
+}
+
+.ticket:hover {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  box-shadow: rgb(4, 106, 186) 0.5px 5px 0.5px;
+  border-radius: 50px 0px 0px 50px;
+}
+
+.ticket-body {
+  border-radius: 50px 0px 0px 50px;
+}
+
+.ticket-tail {
+  width: 0px;
+  height: 100%;
+  border-top: 44px solid rgb(4, 106, 186);
+  border-bottom: 44px solid rgb(4, 106, 186);
+  border-right: 35px solid transparent;
+}
+
+.ticket-tail-secondary {
+  width: 0px;
+  height: 100%;
+  border-top: 44px solid rgb(108, 117, 125);
+  border-bottom: 44px solid rgb(108, 117, 125);
+  border-right: 35px solid transparent;
+}
+
+@media only screen and (max-width: 600px) {
+    .app-container {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .ticket-to-use {
+      height: 90px;
+    }
+
+    .ticket-to-use i {
+      font-size: 50px;
+    }
+}
