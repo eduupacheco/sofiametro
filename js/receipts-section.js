@@ -2,15 +2,15 @@ chargeOnReceipts()
 
 $.ajax({
     type: 'GET',
-    url: 'https://sofiametro-api.herokuapp.com/receipt?id='+USERID,
+    url: 'https://sofiametro-api.herokuapp.com/receipt?id=' + USERID,
     beforeSend: function () {
-        chargeOnReceipts() 
+        chargeOnReceipts()
     },
     success: function (data) {
         chargeReceipts(data[0].tickets)
     },
     error: function () {
-        chargeOnReceipts() 
+        chargeOnReceipts()
         chargeErrorOnReceipts()
     }
 })
@@ -18,10 +18,22 @@ $.ajax({
 function chargeReceipts(data) {
     var activedtickets = data.filter(ticket => ticket.active == true)
     var passedtickets = data.filter(ticket => ticket.active == false)
+    $.get("https://sofiametro-api.herokuapp.com/ticket/all", function (tickets) {
+        chargeActivedReceipts(activedtickets, tickets)
+        chargePassedReceipts(passedtickets, tickets)
+    });
+}
 
-    var elementsactivedtickets = ''
-    activedtickets.forEach(ticket => {
-        elementsactivedtickets += `
+function chargeActivedReceipts(data, tickets) {
+    var elements = ''
+    data.forEach(d => {
+        var ticketname = ''
+        tickets.forEach(t => {
+            if (t.family == d.family) {
+                ticketname = t.display
+            }
+        })
+        elements += `
             <div class="card mb-3 p-0 my-2 ticket-to-use" data-toggle="modal" data-target="#modal-for-use-ticket">
                 <div class="row no-gutters p-0">
                     <div class="col-4 bg-color-metro d-flex justify-content-center p-0">
@@ -30,8 +42,8 @@ function chargeReceipts(data) {
                     <div class="ticket-tail"></div>
                     <div class="col p-2 d-flex justify-content-between">
                         <div class="align-self-center">
-                            <h6 class="align-self-center text-muted">${ticket.family}</h6>
-                            <span class="small text-muted" style="font-size: 8px;">BUY FROM ${ticket.timebuy} IN ${ticket.datebuy}</span>
+                            <h6 class="align-self-center text-muted">${ticketname}</h6>
+                            <span class="small text-muted" style="font-size: 8px;">BUY FROM ${d.timebuy} IN ${d.datebuy}</span>
                         </div>
                         <div>
                             <div class="ticket-on"></div>
@@ -41,10 +53,19 @@ function chargeReceipts(data) {
             </div>
         `
     })
-    $('#actived-tickets-section').html(elementsactivedtickets)
-    var elementspassedtickets = ''
-    passedtickets.forEach(ticket => {
-        elementspassedtickets += `
+    $('#actived-tickets-section').html(elements)
+}
+
+function chargePassedReceipts(data, tickets) {
+    var elements = ''
+    data.forEach(d => {
+        var ticketname = ''
+        tickets.forEach(t => {
+            if (t.family == d.family) {
+                ticketname = t.display
+            }
+        })
+        elements += `
             <div class="card mb-3 p-0 my-2 ticket-to-use" data-toggle="modal" data-target="#modal-for-use-ticket">
                 <div class="row no-gutters p-0">
                     <div
@@ -54,8 +75,8 @@ function chargeReceipts(data) {
                     <div class="ticket-tail-secondary"></div>
                     <div class="col p-2 d-flex justify-content-between">
                         <div class="align-self-center">
-                            <h6 class="align-self-center text-muted">${ticket.family}</h6>
-                            <span class="small text-muted" style="font-size: 8px;">USED IN ${ticket.timeuse} IN ${ticket.dateuse}</span>
+                            <h6 class="align-self-center text-muted">${ticketname}</h6>
+                            <span class="small text-muted" style="font-size: 8px;">USED IN ${d.timeuse} IN ${d.dateuse}</span>
                         </div>
                         <div>
                             <div class="ticket-off"></div>
@@ -65,7 +86,7 @@ function chargeReceipts(data) {
             </div>
         `
     })
-    $('#passed-tickets-section').html(elementspassedtickets)
+    $('#passed-tickets-section').html(elements)
 }
 
 function chargeErrorOnReceipts() {

@@ -7,7 +7,7 @@ $.ajax({
         chargerOnTickets()
     },
     success: function (data) {
-        storageTickets(data)
+        chargeTickets(data)
     },
     error: function () {
         chargerOnTickets()
