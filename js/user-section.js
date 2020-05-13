@@ -2,7 +2,7 @@ chargerOnUser()
 
 $.ajax({
     type: 'GET',
-    url: 'https://sofiametro-api.herokuapp.com/user?id='+USERID,
+    url: 'https://sofiametro-api.herokuapp.com/user?id=' + USERID,
     beforeSend: function () {
         chargerOnUser()
     },
@@ -19,7 +19,9 @@ function chargeUser(data) {
     chargeProfileSection(data.name, data.email, data.phonenumber)
     chargePaymentSection(data.payments)
     chargeNotificationsSection(data.notifications)
-    chargeActivitySection(data.activities)
+    $.get("https://sofiametro-api.herokuapp.com/ticket/all", function (tickets) {
+        chargeActivitySection(data.activities, tickets)
+    });
 }
 
 function chargeProfileSection(name, email, phonenumber) {
@@ -74,9 +76,9 @@ function chargePaymentSection(payments) {
             <button class="btn btn-sm btn-success mt-1">Link to</button>
         </div></div></div></div></div>
     `);
-    (payments.paypal)? $('#paypal-connection').html(LINKED) : $('#paypal-connection').html(NOT_LINKED);
-    (payments.visa)? $('#visa-connection').html(LINKED) : $('#visa-connection').html(NOT_LINKED);
-    (payments.mastercard)? $('#mastercard-connection').html(LINKED) : $('#mastercard-connection').html(NOT_LINKED);
+    (payments.paypal) ? $('#paypal-connection').html(LINKED) : $('#paypal-connection').html(NOT_LINKED);
+    (payments.visa) ? $('#visa-connection').html(LINKED) : $('#visa-connection').html(NOT_LINKED);
+    (payments.mastercard) ? $('#mastercard-connection').html(LINKED) : $('#mastercard-connection').html(NOT_LINKED);
 }
 
 function chargeNotificationsSection(notifications) {
@@ -87,46 +89,48 @@ function chargeNotificationsSection(notifications) {
     <input id="email-notification-check" class="pl-2" type="checkbox" aria-label="Checkbox for following text input">
     <label class="text-muted">Yes, I would like to receive notifications of each payments via email</label></div>
     <div class="mt-3"><button class="btn btn-light">Save Changes</button></div>`);
-    (notifications.sms)? $('#sms-notification-check').attr('checked', ''): console.log();
-    (notifications.email)? $('#email-notification-check').attr('checked', ''): console.log();
+    (notifications.sms) ? $('#sms-notification-check').attr('checked', '') : console.log();
+    (notifications.email) ? $('#email-notification-check').attr('checked', '') : console.log();
 }
 
-function chargeActivitySection(activities){
+function chargeActivitySection(activities, tickets) {
     var elements = ''
     activities.reverse().forEach(e => {
         elements += `<div class="card p-0 activity my-2">
             <div class="card-body p-2">
-                <div class="card-text text-muted small">${obtainActivityMessage(e.type, e.time, e.date, e.extra)}</div>
+                <div class="card-text text-muted small">${obtainActivityMessage(e.type, e.time, e.date, e.extra, tickets)}</div>
             </div>
         </div>`
     });
     $('#activity-section').html(elements);
 }
 
-function obtainActivityMessage(type, time, date, extra){
+function obtainActivityMessage(type, time, date, extra, tickets) {
     var msg = ''
-    switch(type){
-        case "buy": msg = `<i class="fas fa-money-check-alt"></i> Has buy a ticket (${extra})`; break;
+    var ticketname = ''
+    tickets.forEach(ticket => {
+        if(ticket.family == extra){
+            ticketname = ticket.display
+        }
+    });
+    switch (type) {
+        case "buy": msg = `<i class="fas fa-money-check-alt"></i> Has buy a ticket (${ticketname})`; break;
         case "logout": msg = '<i class="fas fa-sign-out-alt"></i> Has logged out'; break;
         case "loggin": msg = '<i class="fas fa-sign-in-alt"></i> Has logged in'; break;
-        case "checkin": msg = `<i class="fas fa-subway"></i> Has check in (${extra})`; break;
-        case "checkout": msg = `<i class="fas fa-subway"></i> Has check out (${extra})`; break;
+        case "checkin": msg = `<i class="fas fa-subway"></i> Has check in (${ticketname})`; break;
+        case "checkout": msg = `<i class="fas fa-subway"></i> Has check out (${ticketname})`; break;
     }
     return msg + ' at ' + time + ' in ' + date
 }
 
-function getTicketName(id){
-    
-}
-
-function chargeErrorOnUser(){
+function chargeErrorOnUser() {
     $('#profile-section').html('<div class="d-flex justify-content-center my-4"><div><span class="muted">The user data is not available right now.</div></div>')
     $('#profile-section').html('<div class="d-flex justify-content-center my-4"><div><span class="muted">The user data is not available right now.</div></div>')
     $('#notification-section').html('<div class="d-flex justify-content-center my-4"><div><span class="muted">The user data is not available right now.</div></div>')
     $('#activity-section').html('<div class="d-flex justify-content-center my-4"><div><span class="muted">The user data is not available right now.</div></div>')
 }
 
-function chargerOnUser(){
+function chargerOnUser() {
     $('#profile-section').html('<div class="d-flex justify-content-center my-4"><div><img src="img/spinner.gif" width="50"></div></div>')
     $('#payment-section').html('<div class="d-flex justify-content-center my-4"><div><img src="img/spinner.gif" width="50"></div></div>')
     $('#notification-section').html('<div class="d-flex justify-content-center my-4"><div><img src="img/spinner.gif" width="50"></div></div>')

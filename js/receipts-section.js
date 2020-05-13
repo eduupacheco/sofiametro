@@ -55,7 +55,7 @@ function chargeReceipts(data) {
                     <div class="col p-2 d-flex justify-content-between">
                         <div class="align-self-center">
                             <h6 class="align-self-center text-muted">${ticket.family}</h6>
-                            <span class="small text-muted" style="font-size: 8px;">BUY FROM ${ticket.timeuse} IN ${ticket.dateuse}</span>
+                            <span class="small text-muted" style="font-size: 8px;">USED IN ${ticket.timeuse} IN ${ticket.dateuse}</span>
                         </div>
                         <div>
                             <div class="ticket-off"></div>
