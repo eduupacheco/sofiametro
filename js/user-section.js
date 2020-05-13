@@ -1,12 +1,17 @@
+chargerOnUser()
+
 $.ajax({
     type: "GET",
     url: "https://sofiametro-api.herokuapp.com/user?id=1",
     beforeSend: function () {
+        chargerOnUser()
     },
     success: function (data) {
         chargeUser(data[0])
     },
     error: function () {
+        chargerOnUser()
+        chargeErrorOnUser()
     }
 })
 
@@ -111,15 +116,19 @@ function obtainActivityMessage(type, time, date, extra){
 }
 
 function getTicketName(id){
-    console.log('ID:'+id)
-    $.ajax({
-        type: "GET",
-        url: "https://sofiametro-api.herokuapp.com/ticket?family="+parseInt(id),
-        success: successCallBackOnGetTicketName,
-    });
-    return successCallBackOnGetTicketName()
+    
 }
 
-function successCallBackOnGetTicketName(data){
-    return data.display
+function chargeErrorOnUser(){
+    $('#profile-section').html('<div class="d-flex justify-content-center my-4"><div><span class="muted">The user data is not available right now.</div></div>')
+    $('#profile-section').html('<div class="d-flex justify-content-center my-4"><div><span class="muted">The user data is not available right now.</div></div>')
+    $('#notification-section').html('<div class="d-flex justify-content-center my-4"><div><span class="muted">The user data is not available right now.</div></div>')
+    $('#activity-section').html('<div class="d-flex justify-content-center my-4"><div><span class="muted">The user data is not available right now.</div></div>')
+}
+
+function chargerOnUser(){
+    $('#profile-section').html('<div class="d-flex justify-content-center my-4"><div><img src="img/spinner.gif" width="50"></div></div>')
+    $('#payment-section').html('<div class="d-flex justify-content-center my-4"><div><img src="img/spinner.gif" width="50"></div></div>')
+    $('#notification-section').html('<div class="d-flex justify-content-center my-4"><div><img src="img/spinner.gif" width="50"></div></div>')
+    $('#activity-section').html('<div class="d-flex justify-content-center my-4"><div><img src="img/spinner.gif" width="50"></div></div>')
 }

@@ -113,84 +113,12 @@
                         <div class="w-100">
                             <h2 class="text-color-metro">Actived Tickets</h2>
                         </div>
-                        <div class="w-100">
-                            <div class="card mb-3 p-0 my-2 ticket-to-use" data-toggle="modal" data-target="#modal-for-use-ticket">
-                                <div class="row no-gutters p-0">
-                                    <div class="col-4 bg-color-metro d-flex justify-content-center p-0">
-                                        <i class="fa fa-ticket-alt text-white display-3 align-self-center"></i>
-                                    </div>
-                                    <div class="ticket-tail"></div>
-                                    <div class="col p-2 d-flex justify-content-between">
-                                        <div class="align-self-center">
-                                            <h6 class="align-self-center text-muted">Single Ticket</h6>
-                                            <span class="small text-muted" style="font-size: 8px;">BUY FROM 20:00:15 IN 03-20-2020</span>
-                                        </div>
-                                        <div>
-                                            <div class="ticket-on"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-3 p-0 my-2 ticket-to-use" data-toggle="modal" data-target="#modal-for-use-ticket">
-                                <div class="row no-gutters p-0">
-                                    <div class="col-4 bg-color-metro d-flex justify-content-center p-0">
-                                        <i class="fa fa-ticket-alt text-white display-3 align-self-center"></i>
-                                    </div>
-                                    <div class="ticket-tail"></div>
-                                    <div class="col p-2 d-flex justify-content-between">
-                                        <div class="align-self-center">
-                                            <h6 class="align-self-center text-muted">One day card for all Sofia public transportation lines</h6>
-                                            <span class="small text-muted" style="font-size: 8px;">BUY FROM 22:00:15 IN 02-20-2020</span>
-                                        </div>
-                                        <div>
-                                            <div class="ticket-on"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="w-100" id="actived-tickets-section"></div>
                         <div class="dropdown-divider"></div>
                         <div class="w-100">
                             <h2 class="text-secondary">Passed Tickets</h2>
                         </div>
-                        <div class="w-100">
-                            <div class="card mb-3 p-0 my-2 ticket-to-use" data-toggle="modal" data-target="#modal-for-use-ticket">
-                                <div class="row no-gutters p-0">
-                                    <div
-                                        class="col-4 bg-secondary d-flex justify-content-center p-0">
-                                        <i class="fa fa-ticket-alt text-white display-3 align-self-center"></i>
-                                    </div>
-                                    <div class="ticket-tail-secondary"></div>
-                                    <div class="col p-2 d-flex justify-content-between">
-                                        <div class="align-self-center">
-                                            <h6 class="align-self-center text-muted">Single Ticket</h6>
-                                            <span class="small text-muted" style="font-size: 8px;">USED IN 21:00:15 IN 03-20-2020</span>
-                                        </div>
-                                        <div>
-                                            <div class="ticket-off"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-3 p-0 my-2 ticket-to-use">
-                                <div class="row no-gutters p-0" data-toggle="modal" data-target="#modal-for-use-ticket">
-                                    <div
-                                        class="col-4 bg-secondary d-flex justify-content-center p-0">
-                                        <i class="fa fa-ticket-alt text-white display-3 align-self-center"></i>
-                                    </div>
-                                    <div class="ticket-tail-secondary"></div>
-                                    <div class="col p-2 d-flex justify-content-between">
-                                        <div class="align-self-center">
-                                            <h6 class="align-self-center text-muted">Single Ticket</h6>
-                                            <span class="small text-muted" style="font-size: 8px;">USED IN 21:00:15 IN 03-20-2020</span>
-                                        </div>
-                                        <div>
-                                            <div class="ticket-off"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="w-100" id="passed-tickets-section"></div>
                     </div>
 
                     <!-- shop -->
@@ -200,7 +128,6 @@
                         <div class="w-100">
                             <h2 class="text-color-metro">Buy Tickets</h2>
                         </div>
-
                         <div id="ticket-section"></div>
                     </div>
 
@@ -285,78 +212,7 @@
                                             <h2 class="text-color-metro">Activity</h2>
                                         </div>
                                         <div class="px-2 w-100 mt-4">
-                                            <div class="w-100" id="activity-section">
-                                                <div class="card p-0 activity my-2">
-                                                    <div class="card-body p-2">
-                                                        <div class="card-text text-muted small"><i
-                                                                class="fas fa-sign-in-alt"></i> Has logged in at 07:00
-                                                            in 03-03-2020</div>
-                                                    </div>
-                                                </div>
-                                                <div class="card p-0 activity my-2">
-                                                    <div class="card-body p-2">
-                                                        <div class="card-text text-muted small"><i
-                                                                class="fas fa-sign-out-alt"></i> Has logged out at 10:00
-                                                            in 03-03-2020</div>
-                                                    </div>
-                                                </div>
-                                                <div class="card p-0 activity my-2">
-                                                    <div class="card-body p-2">
-                                                        <div class="card-text text-muted small"><i
-                                                                class="fas fa-subway"></i> Has check in with Single
-                                                            Ticket at 09:30 in 03-03-2020</div>
-                                                    </div>
-                                                </div>
-                                                <div class="card p-0 activity my-2">
-                                                    <div class="card-body p-2">
-                                                        <div class="card-text text-muted small"><i
-                                                                class="fas fa-sign-in-alt"></i> Has logged in at 07:00
-                                                            in 03-03-2020</div>
-                                                    </div>
-                                                </div>
-                                                <div class="card p-0 activity my-2">
-                                                    <div class="card-body p-2">
-                                                        <div class="card-text text-muted small"><i
-                                                                class="fas fa-subway"></i> Has check in with Single
-                                                            Ticket at 09:30 in 03-03-2020</div>
-                                                    </div>
-                                                </div>
-                                                <div class="card p-0 activity my-2">
-                                                    <div class="card-body p-2">
-                                                        <div class="card-text text-muted small"><i
-                                                                class="fas fa-sign-in-alt"></i> Has logged in at 07:00
-                                                            in 03-03-2020</div>
-                                                    </div>
-                                                </div>
-                                                <div class="card p-0 activity my-2">
-                                                    <div class="card-body p-2">
-                                                        <div class="card-text text-muted small"><i
-                                                                class="fas fa-money-check-alt"></i> Has buy a ticket at
-                                                            09:30 in 03-03-2020</div>
-                                                    </div>
-                                                </div>
-                                                <div class="card p-0 activity my-2">
-                                                    <div class="card-body p-2">
-                                                        <div class="card-text text-muted small"><i
-                                                                class="fas fa-sign-in-alt"></i> Has logged in at 07:00
-                                                            in 03-03-2020</div>
-                                                    </div>
-                                                </div>
-                                                <div class="card p-0 activity my-2">
-                                                    <div class="card-body p-2">
-                                                        <div class="card-text text-muted small"><i
-                                                                class="fas fa-money-check-alt"></i> Has buy a ticket at
-                                                            09:30 in 03-03-2020</div>
-                                                    </div>
-                                                </div>
-                                                <div class="card p-0 activity my-2">
-                                                    <div class="card-body p-2">
-                                                        <div class="card-text text-muted small"><i
-                                                                class="fas fa-sign-in-alt"></i> Has logged in at 07:00
-                                                            in 03-03-2020</div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div class="w-100" id="activity-section"></div>
                                         </div>
                                     </div>
                                 </div>
