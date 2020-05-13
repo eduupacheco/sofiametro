@@ -88,7 +88,6 @@ function chargeNotificationsSection(notifications) {
 
 function chargeActivitySection(activities){
     var elements = ''
-    
     activities.reverse().forEach(e => {
         elements += `<div class="card p-0 activity my-2">
             <div class="card-body p-2">
@@ -96,7 +95,6 @@ function chargeActivitySection(activities){
             </div>
         </div>`
     });
-
     $('#activity-section').html(elements);
 }
 
@@ -117,8 +115,11 @@ function getTicketName(id){
     $.ajax({
         type: "GET",
         url: "https://sofiametro-api.herokuapp.com/ticket?family="+parseInt(id),
-        success: function (data) {
-            return data[0].display
-        },
+        success: successCallBackOnGetTicketName,
     });
+    return successCallBackOnGetTicketName()
+}
+
+function successCallBackOnGetTicketName(data){
+    return data.display
 }
