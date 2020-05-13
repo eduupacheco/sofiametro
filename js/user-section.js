@@ -1,8 +1,8 @@
 chargerOnUser()
 
 $.ajax({
-    type: "GET",
-    url: "https://sofiametro-api.herokuapp.com/user?id=1",
+    type: 'GET',
+    url: 'https://sofiametro-api.herokuapp.com/user?id='+USERID,
     beforeSend: function () {
         chargerOnUser()
     },
@@ -106,11 +106,11 @@ function chargeActivitySection(activities){
 function obtainActivityMessage(type, time, date, extra){
     var msg = ''
     switch(type){
-        case "buy": msg = `<i class="fas fa-money-check-alt"></i> Has buy a ticket (${getTicketName(extra)})`; break;
+        case "buy": msg = `<i class="fas fa-money-check-alt"></i> Has buy a ticket (${extra})`; break;
         case "logout": msg = '<i class="fas fa-sign-out-alt"></i> Has logged out'; break;
         case "loggin": msg = '<i class="fas fa-sign-in-alt"></i> Has logged in'; break;
-        case "checkin": msg = `<i class="fas fa-subway"></i> Has check in (${getTicketName(extra)})`; break;
-        case "checkout": msg = `<i class="fas fa-subway"></i> Has check out (${getTicketName(extra)})`; break;
+        case "checkin": msg = `<i class="fas fa-subway"></i> Has check in (${extra})`; break;
+        case "checkout": msg = `<i class="fas fa-subway"></i> Has check out (${extra})`; break;
     }
     return msg + ' at ' + time + ' in ' + date
 }

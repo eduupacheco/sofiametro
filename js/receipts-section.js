@@ -1,14 +1,17 @@
-$.ajax({
-    type: "GET",
-    url: "https://sofiametro-api.herokuapp.com/receipt?id=1",
-    beforeSend: function () {
+chargeOnReceipts()
 
+$.ajax({
+    type: 'GET',
+    url: 'https://sofiametro-api.herokuapp.com/receipt?id='+USERID,
+    beforeSend: function () {
+        chargeOnReceipts() 
     },
     success: function (data) {
         chargeReceipts(data[0].tickets)
     },
     error: function () {
-
+        chargeOnReceipts() 
+        chargeErrorOnReceipts()
     }
 })
 
@@ -66,9 +69,11 @@ function chargeReceipts(data) {
 }
 
 function chargeErrorOnReceipts() {
-    
+    $('#actived-tickets-section').html('<div class="d-flex justify-content-center my-4"><div><span class="muted">The activated tickets are not available right now.</div></div>')
+    $('#passed-tickets-section').html('<div class="d-flex justify-content-center my-4"><div><span class="muted">The passed tickets are not available right now.</div></div>')
 }
 
 function chargeOnReceipts() {
-
+    $('#actived-tickets-section').html('<div class="d-flex justify-content-center my-4"><div><img src="img/spinner.gif" width="50"></div></div>')
+    $('#passed-tickets-section').html('<div class="d-flex justify-content-center my-4"><div><img src="img/spinner.gif" width="50"></div></div>')
 }
