@@ -2,7 +2,7 @@ chargeOnReceipts()
 
 $.ajax({
     type: 'GET',
-    url: 'https://sofiametro-api.herokuapp.com/receipt?id=' + USERID,
+    url: 'https://sofiametroapi.herokuapp.com/receipt?id=' + USERID,
     beforeSend: function () {
         chargeOnReceipts()
     },
@@ -18,7 +18,7 @@ $.ajax({
 function chargeReceipts(data) {
     var activedtickets = data.filter(ticket => ticket.active == true)
     var passedtickets = data.filter(ticket => ticket.active == false)
-    $.get("https://sofiametro-api.herokuapp.com/ticket/all", function (tickets) {
+    $.get("https://sofiametroapi.herokuapp.com/ticket/all", function (tickets) {
         chargeActivedReceipts(activedtickets, tickets)
         chargePassedReceipts(passedtickets, tickets)
     });

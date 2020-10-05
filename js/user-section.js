@@ -2,7 +2,7 @@ chargerOnUser()
 
 $.ajax({
     type: 'GET',
-    url: 'https://sofiametro-api.herokuapp.com/user?id=' + USERID,
+    url: 'https://sofiametroapi.herokuapp.com/user?id=' + USERID,
     beforeSend: function () {
         chargerOnUser()
     },
@@ -19,7 +19,7 @@ function chargeUser(data) {
     chargeProfileSection(data.name, data.email, data.phonenumber)
     chargePaymentSection(data.payments)
     chargeNotificationsSection(data.notifications)
-    $.get("https://sofiametro-api.herokuapp.com/ticket/all", function (tickets) {
+    $.get("https://sofiametroapi.herokuapp.com/ticket/all", function (tickets) {
         chargeActivitySection(data.activities, tickets)
     });
 }

@@ -2,7 +2,7 @@ chargerOnTickets()
 
 $.ajax({
     type: 'GET',
-    url: 'https://sofiametro-api.herokuapp.com/ticket/all',
+    url: 'https://sofiametroapi.herokuapp.com/ticket/all',
     beforeSend: function(){
         chargerOnTickets()
     },
